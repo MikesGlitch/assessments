@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
+import Link from 'next/link'
 import Head from 'next/head'
-import FloatingButton from '../components/FloatingButton'
+import Nav from '../components/Nav'
 import CatsGallery from '../features/cats/gallery/CatsGallery'
 
 const IndexPage: NextPage = () => {
@@ -11,8 +12,8 @@ const IndexPage: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="container">
+        <Nav buttonText="Upload!" linkTo="/upload"/>
         <CatsGallery />
-        <FloatingButton buttonText="Upload!" linkTo="/upload" />
       </main>
     </div>
   )

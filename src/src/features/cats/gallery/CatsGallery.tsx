@@ -25,7 +25,6 @@ function CatsGallery() {
   const hasMoreData = useAppSelector(selectHasMoreData)
   const currentPage = useAppSelector(selectCurrentPage)
 
-
   const fetchData = () => {
     dispatch(getCatsAsync({ page: currentPage }))
   }

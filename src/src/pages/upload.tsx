@@ -1,7 +1,8 @@
 import type { NextPage } from 'next'
+import Link from 'next/link'
 import Head from 'next/head'
 import React from 'react'
-import FloatingButton from '../components/FloatingButton'
+import Nav from '../components/Nav'
 import UploadCat from '../features/cats/upload/UploadCat'
 
 const UploadPage: NextPage = () => {
@@ -12,7 +13,7 @@ const UploadPage: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="container">
-        <FloatingButton buttonText="Go back" linkTo='/' />
+        <Nav buttonText="Go back" linkTo="/"/>
         <UploadCat />
       </main>
     </div>

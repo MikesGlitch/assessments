@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { NextRouter, Router } from 'next/dist/client/router'
-
-import type { AppState, AppThunk } from '../../../app/store'
+import { NextRouter} from 'next/dist/client/router'
 import { getCatsAsync } from '../gallery/catsGallerySlice'
 import { uploadCat as uploadCatApi } from './catsUploadAPI'
 
