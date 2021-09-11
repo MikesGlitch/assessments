@@ -1,23 +1,28 @@
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useAppSelector, useAppDispatch } from '../../../app/hooks'
+import { useAppSelector, useAppDispatch } from '../../../../app/hooks'
 import {
   getCatsAsync,
+  getFavoriteCatsAsync,
+  getVotesAsync,
   selectCats,
   selectCurrentPage,
-  selectHasMoreData
-} from './catsGallerySlice'
+  selectHasMoreData,
+} from './../catsGallerySlice'
+import { ICat } from "./../interfaces/ICat";
+import CatCard from './CatCard';
 
 function CatsGallery() {
   const dispatch = useAppDispatch()
   const status = useAppSelector(state => state.catsGallery.status)
+  const userId = useAppSelector(state => state.user.id)
 
   useEffect(() => {
-    // don't know if this is ideal
-    console.log(status)
     if (status === 'idle') {
       fetchData()
+      dispatch(getFavoriteCatsAsync(userId))
+      dispatch(getVotesAsync())
     }
   }, [status, dispatch])
 
@@ -39,22 +44,11 @@ function CatsGallery() {
             hasMore={hasMoreData}
             loader={<h4>Loading...</h4>}
           >
-            <div className="columns is-multiline">
-              {cats.map((cat: any, index) => {
+            <div className="columns is-mobile is-multiline">
+              {cats.map((cat: ICat, index) => {
                 return (
-                  <div key={index} className="column is-one-quarter">
-                    <div className="card">
-                      <div className="card-image">
-                        <figure className="image is-4by3">
-                          <img src={cat.url} alt={cat.original_filename} />
-                        </figure>
-                      </div>
-                      <footer className="card-footer">
-                        <a href="#" className="card-footer-item">Vote up</a>
-                        <a href="#" className="card-footer-item">Vote down</a>
-                        <a href="#" className="card-footer-item">Favorite</a>
-                      </footer>
-                    </div>
+                  <div key={index} className="column is-one-quarter-desktop is-half-tablet is-full-mobile">
+                    <CatCard cat={cat} />
                   </div>
                 )
               })}

@@ -1,10 +1,19 @@
 import type { NextPage } from 'next'
-import Link from 'next/link'
 import Head from 'next/head'
+import { useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from '../app/hooks'
 import Nav from '../components/Nav'
-import CatsGallery from '../features/cats/gallery/CatsGallery'
+import CatsGallery from '../features/cats/gallery/components/CatsGallery'
+import { getOrCreateUserId } from '../features/user/userSlice'
 
 const IndexPage: NextPage = () => {
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    dispatch(getOrCreateUserId())
+  }, [dispatch])
+  
+  const userId = useAppSelector(state => state.user.id)
+  
   return (
     <div>
       <Head>
@@ -12,8 +21,15 @@ const IndexPage: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="container">
-        <Nav buttonText="Upload!" linkTo="/upload"/>
-        <CatsGallery />
+        {userId && (
+          <>        
+            <Nav buttonText="Upload!" linkTo="/upload"/>
+            <CatsGallery />
+          </>
+        )}
+        {!userId && (          
+          <p>You have no user id.  NO CATS FOR YOU!</p>
+        )}
       </main>
     </div>
   )

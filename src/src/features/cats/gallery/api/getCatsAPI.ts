@@ -1,5 +1,5 @@
-import axios, { AxiosError } from "axios"
-import { ICat } from "./catsGallerySlice"
+import axios from "axios"
+import { ICat } from "../interfaces/ICat"
 
 interface GetCatsResponse {
   cats: ICat[],

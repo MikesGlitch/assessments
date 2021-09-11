@@ -2,10 +2,11 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 
 import catsUploadReducer from '../features/cats/upload/catsUploadSlice'
 import catsGalleryReducer from '../features/cats/gallery/catsGallerySlice'
+import userReducer from '../features/user/userSlice'
 
 export function makeStore() {
   return configureStore({
-    reducer: { catsUpload: catsUploadReducer, catsGallery: catsGalleryReducer },
+    reducer: { catsUpload: catsUploadReducer, catsGallery: catsGalleryReducer, user: userReducer },
   })
 }
 
