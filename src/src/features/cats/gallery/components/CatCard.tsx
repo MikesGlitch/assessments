@@ -11,13 +11,14 @@ import {
 import { ICat } from "../interfaces/ICat";
 import ThumbsDownIcon from "../../../../components/icons/ThumbsDownIcon";
 import ThumbsUpIcon from "../../../../components/icons/ThumbsUpIcon";
+import { selectUserId } from "../../upload/catsUploadSlice";
 
 function CatCard(props: { cat: ICat }) {
   const cat = props.cat;
   const dispatch = useAppDispatch();
-  const userId = useAppSelector((state) => state.user.id);
+  const userId = useAppSelector(selectUserId);
 
-  // bit inefficient but ran out of time
+  // bit inefficient but ran out of time.  would have ideally just mapped these values to the cat but then paging...
   const favorite = useAppSelector((state) => 
     state.catsGallery.favoriteCats.find((favoriteCat) => favoriteCat.image_id === props.cat.id && favoriteCat.sub_id == userId));
 

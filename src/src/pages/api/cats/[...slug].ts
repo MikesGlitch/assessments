@@ -13,7 +13,8 @@ const catProxy = createProxyMiddleware({
     pathRewrite: { [`^/api/cats`]: ''},
     secure: false,
     onProxyReq: (proxyReq, req, res) => {
-        proxyReq.setHeader('x-api-key', process.env.CATS_API_KEY);
+      // proxying to hide the api key from the client
+      proxyReq.setHeader('x-api-key', process.env.CATS_API_KEY);
     }
 });
 

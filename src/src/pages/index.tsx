@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
 import Nav from '../components/Nav'
 import CatsGallery from '../features/cats/gallery/components/CatsGallery'
+import { selectUserId } from '../features/cats/upload/catsUploadSlice'
 import { getOrCreateUserId } from '../features/user/userSlice'
 
 const IndexPage: NextPage = () => {
@@ -12,7 +13,7 @@ const IndexPage: NextPage = () => {
     dispatch(getOrCreateUserId())
   }, [dispatch])
   
-  const userId = useAppSelector(state => state.user.id)
+  const userId = useAppSelector(selectUserId)
   
   return (
     <div>
@@ -28,7 +29,7 @@ const IndexPage: NextPage = () => {
           </>
         )}
         {!userId && (          
-          <p>You have no user id.  NO CATS FOR YOU!</p>
+          <p>You have no user id.  You don't get to see this page!</p>
         )}
       </main>
     </div>

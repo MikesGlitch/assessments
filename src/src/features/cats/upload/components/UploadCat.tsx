@@ -1,9 +1,9 @@
-import { useRouter } from "next/dist/client/router";
-import { ChangeEvent, useState } from "react";
-import UploadIcon from "../../../components/icons/UploadIcon";
+import { useRouter } from "next/dist/client/router"
+import { ChangeEvent, useState } from "react"
+import UploadIcon from "../../../../components/icons/UploadIcon"
 
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import { uploadCatAsync } from "./catsUploadSlice";
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
+import { uploadCatAsync } from "../catsUploadSlice"
 
 function UploadCat() {
   const dispatch = useAppDispatch()

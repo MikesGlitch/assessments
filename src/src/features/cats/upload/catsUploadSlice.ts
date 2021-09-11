@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { NextRouter} from 'next/dist/client/router'
+import { AppState } from '../../../app/store'
 import { getCatsAsync } from '../gallery/catsGallerySlice'
-import { uploadCat as uploadCatApi } from './uploadCatAPI'
+import { uploadCat as uploadCatApi } from './api/uploadCatAPI'
+import { IUploadCatAction } from './interfaces/IUploadCatAction'
 
 export interface CatsState {
   status: 'idle' | 'loading' | 'failed' | 'complete',
@@ -9,11 +10,6 @@ export interface CatsState {
 
 const initialState: CatsState = {
   status: 'idle',
-}
-
-interface IUploadCatAction {
-  fileToUpload: File, 
-  router: NextRouter
 }
 
 export const uploadCatAsync = createAsyncThunk(
@@ -48,3 +44,5 @@ export const catsSlice = createSlice({
 export const { } = catsSlice.actions
 
 export default catsSlice.reducer
+
+export const selectUserId = (state: AppState) => state.user.id

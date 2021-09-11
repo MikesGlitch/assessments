@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useAppSelector, useAppDispatch } from '../../../../app/hooks'
+import { selectUserId } from '../../upload/catsUploadSlice';
 import {
   getCatsAsync,
   getFavoriteCatsAsync,
@@ -16,7 +17,7 @@ import CatCard from './CatCard';
 function CatsGallery() {
   const dispatch = useAppDispatch()
   const status = useAppSelector(state => state.catsGallery.status)
-  const userId = useAppSelector(state => state.user.id)
+  const userId = useAppSelector(selectUserId)
 
   useEffect(() => {
     if (status === 'idle') {

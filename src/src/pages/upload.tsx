@@ -1,9 +1,8 @@
 import type { NextPage } from 'next'
-import Link from 'next/link'
 import Head from 'next/head'
 import React from 'react'
 import Nav from '../components/Nav'
-import UploadCat from '../features/cats/upload/UploadCat'
+import UploadCat from '../features/cats/upload/components/UploadCat'
 
 const UploadPage: NextPage = () => {
   return (

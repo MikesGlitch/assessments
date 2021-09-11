@@ -7,7 +7,7 @@ interface IGetFavoriteCatsApi {
   favorites: IFavoriteCat[]
 }
 
-const limit = 100
+const limit = 100000
 
 export async function getFavoriteCatsApi(subId: string): Promise<IGetFavoriteCatsApi> {
   const response = await axios.get<IFavoriteCat[]>(`/api/cats/favourites?limit=${limit}&sub_id=${subId}`)
