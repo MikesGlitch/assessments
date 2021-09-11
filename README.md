@@ -1,4 +1,4 @@
 # Only Cats
 
-URL: https://only-cats-coderevver.vercel.app/
+URL: https://only-cats.vercel.app
 
