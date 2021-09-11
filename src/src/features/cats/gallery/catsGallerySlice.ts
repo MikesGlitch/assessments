@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import type { AppState } from '../../../app/store'
-import { getCats as getCatsApi } from './api/getCatsAPI'
+import { getCatsApi } from './api/getCatsAPI'
 import { getFavoriteCatsApi } from './api/getFavoriteCatsApi'
 import { addFavoriteCatAPI } from './api/addFavoriteCatAPI'
 import { removeFavoriteCatAPI } from './api/removeFavoriteCatAPI'
@@ -19,7 +19,7 @@ export interface CatsState {
   status: 'idle' | 'loading' | 'failed' | 'complete',
   cats: ICat[],
   hasMoreData: boolean,
-  currentPage: number
+  nextPage: number
   favoriteCats: IFavoriteCat[]
   votes: IVote[]
 }
@@ -28,7 +28,7 @@ const initialState: CatsState = {
   status: 'idle',
   cats: [],
   hasMoreData: true,
-  currentPage: 0,
+  nextPage: 0,
   favoriteCats: [],
   votes: [],
 }
@@ -120,7 +120,7 @@ export const catsSlice = createSlice({
         if (action.meta.arg.page === 0) {
           // resetting the cats state when calling getCatsAsync for data on first page
           state.cats = initialState.cats
-          state.currentPage = initialState.currentPage
+          state.nextPage = initialState.nextPage
           state.hasMoreData = initialState.hasMoreData
         }
 
@@ -128,13 +128,11 @@ export const catsSlice = createSlice({
       })
       .addCase(getCatsAsync.fulfilled, (state, action) => {
         state.status = 'complete'
-        if(action.payload.cats)
-
         state.cats = [...state.cats, ...action.payload.cats]
         state.hasMoreData = state.cats.length < action.payload.paginationCount
 
         if (state.hasMoreData) {
-          state.currentPage = state.currentPage + 1
+          state.nextPage = state.nextPage + 1
         }
       })
       .addCase(addFavoriteCatAsync.fulfilled, (state, action) => {
@@ -192,6 +190,6 @@ export const { } = catsSlice.actions
 // selectors
 export const selectCats = (state: AppState) => state.catsGallery.cats
 export const selectHasMoreData = (state: AppState) => state.catsGallery.hasMoreData
-export const selectCurrentPage = (state: AppState) => state.catsGallery.currentPage
+export const selectNextPage = (state: AppState) => state.catsGallery.nextPage
 
 export default catsSlice.reducer

@@ -8,7 +8,7 @@ import {
   getFavoriteCatsAsync,
   getVotesAsync,
   selectCats,
-  selectCurrentPage,
+  selectNextPage as selectNextPage,
   selectHasMoreData,
 } from './../catsGallerySlice'
 import { ICat } from "./../interfaces/ICat";
@@ -21,7 +21,7 @@ function CatsGallery() {
 
   useEffect(() => {
     if (status === 'idle') {
-      fetchData()
+      fetchPagedCatsData()
       dispatch(getFavoriteCatsAsync(userId))
       dispatch(getVotesAsync())
     }
@@ -29,10 +29,10 @@ function CatsGallery() {
 
   const cats = useAppSelector(selectCats)
   const hasMoreData = useAppSelector(selectHasMoreData)
-  const currentPage = useAppSelector(selectCurrentPage)
+  const nextPage = useAppSelector(selectNextPage)
 
-  const fetchData = () => {
-    dispatch(getCatsAsync({ page: currentPage }))
+  const fetchPagedCatsData = () => {
+    dispatch(getCatsAsync({ page: nextPage }))
   }
 
   return (
@@ -41,9 +41,9 @@ function CatsGallery() {
           <InfiniteScroll
             style={{ overflow: 'hidden' }}
             dataLength={cats.length} //This is important field to render the next data
-            next={fetchData}
+            next={fetchPagedCatsData}
             hasMore={hasMoreData}
-            loader={<h4>Loading...</h4>}
+            loader={<div className="has-text-centered"><button className="button is-success is-loading">Loading...</button></div>}
           >
             <div className="columns is-mobile is-multiline">
               {cats.map((cat: ICat, index) => {

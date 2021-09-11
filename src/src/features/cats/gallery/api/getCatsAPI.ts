@@ -8,7 +8,7 @@ interface GetCatsResponse {
 
 const limit = 16 
 
-export async function getCats(page: number): Promise<GetCatsResponse> {
+export async function getCatsApi(page: number): Promise<GetCatsResponse> {
   const response = await axios.get(`/api/cats/images?limit=${limit}&page=${page}`)
   const paginationCount = response.headers['pagination-count']
 
