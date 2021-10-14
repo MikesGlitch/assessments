@@ -3,12 +3,12 @@
     <h1>Upload</h1>
     <FileUpload
       :class="buttonClasses"
-      mode="basic"
+      mode="advanced"
       name="demo[]"
-      url="./upload.php"
       accept="image/*"
+      :auto="false"
       :maxFileSize="1000000"
-      @upload="onUpload"
+      @select="onSelectFile"
     />
   </div>
 </template>
@@ -16,23 +16,16 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import FileUpload from 'primevue/fileupload'
-import { useToast } from 'primevue/usetoast'
 import { primaryButtonClasses } from '@/components/buttons/buttonClasses'
 
 export default defineComponent({
   components: { FileUpload },
   setup() {
-    const toast = useToast()
-    const onUpload = () => {
-      toast.add({
-        severity: 'info',
-        summary: 'Success',
-        detail: 'File Uploaded',
-        life: 3000,
-      })
+    const onSelectFile = () => {
+      alert('selected')
     }
 
-    return { onUpload, buttonClasses: primaryButtonClasses }
+    return { onSelectFile, buttonClasses: primaryButtonClasses }
   },
 })
 </script>

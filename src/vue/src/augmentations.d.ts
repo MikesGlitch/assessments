@@ -5,7 +5,6 @@ export {}
 
 declare module 'vue-router' {
   interface RouteMeta {
-    breadcrumbRoute?: BreadcumbItem[]
     title?: string
   }
 
