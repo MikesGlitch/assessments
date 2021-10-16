@@ -6,7 +6,7 @@ import 'primevue/resources/primevue.min.css'
 import 'primeicons/primeicons.css'
 
 // don't think we have a theme
-import 'primevue/resources/themes/saga-blue/theme.css'
+import 'primevue/resources/themes/tailwind-light/theme.css'
 
 import { createPinia } from 'pinia'
 import PrimeVue from 'primevue/config'
