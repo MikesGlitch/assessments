@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="m-2">
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
       <Card v-for="cat in cats" :key="cat.id">
         <template #header>
@@ -12,10 +12,15 @@
           </figure>
         </template>
         <template #content>
-          <span
-            >Buttons here - has to be content instead of footer cause of constant content padding. I don't like
-            primevue...</span
-          >
+          <div class="flex justify-between">
+            <span class="font-bold">Score: {{ cat.score }}</span>
+            <div class="flex justify-between gap-2">
+              <!-- {{cat}} -->
+              <span>Fav: {{ cat.isFav }}</span>
+              <span>Like: {{ cat.thumbsUp }}</span>
+              <span>Disike: {{ cat.thumbsDown }}</span>
+            </div>
+          </div>
         </template>
       </Card>
     </div>
@@ -38,8 +43,15 @@ export default defineComponent({
     const { userId } = storeToRefs(store)
 
     const catsStore = useCatsStore()
-    const { cats, nextPage } = storeToRefs(catsStore)
+    const { cats } = storeToRefs(catsStore)
     onMounted(() => catsStore.getCats(0))
+
+    // const score = (cat) => {
+    //   const votesForCat = state.catsGallery.votes.filter((vote) => vote.image_id === props.cat.id);
+    //   const upvotes = votesForCat.filter(vote => vote.value === 1);
+    //   const downvotes = votesForCat.filter(vote => vote.value === 0);
+    //   return upvotes.length - downvotes.length;
+    // }
 
     return {
       userId,
