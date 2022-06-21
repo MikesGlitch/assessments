@@ -1,3 +1,5 @@
 # Interview assessments
 
-The purpose of this repository is to store all of the interview assessments I've done for varying companies.  I have permission to store all of this on my repository.
+The purpose of this repository is to store interview assessments that I've completed. 
+
+My goal is to provide information on my abilities without duplicating effort.
