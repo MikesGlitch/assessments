@@ -1,0 +1,20 @@
+@import '~primevue/resources/themes/saga-blue/theme.css';
+@import '~primevue/resources/primevue.min.css';
+@import '~primeicons/primeicons.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles */
+#mainDataTable th {
+  background: #0167a5 !important;
+}
+
+#mainDataTable tr {
+  background-color: #f7f7f7 !important;
+}
+
+.icon-container {
+  @apply flex h-full w-10  text-white justify-center items-center;
+}
