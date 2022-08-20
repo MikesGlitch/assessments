@@ -9,4 +9,4 @@ My goal is to provide information on my abilities without duplicating effort.
 
 I encourage you to look at my personal projects as well!    They are much more interesting.
 
-My personal projects area available on my [GitHub](https://github.com/MikesGlitch).  
+My personal projects are available on my [GitHub](https://github.com/MikesGlitch).  
