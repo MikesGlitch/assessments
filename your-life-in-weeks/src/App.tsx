@@ -1,17 +1,21 @@
 import { CSSProperties, useState } from 'react'
 import './App.css'
-import { addWeeks, addYears, differenceInYears, getWeek, isPast } from 'date-fns'
+import { addWeeks, addYears, differenceInDays, differenceInYears, getWeek, isPast } from 'date-fns'
 
-function Week({ week, filled, date }: { week: number, filled: boolean, date: Date }) {
+function Week({ week, filled, partiallyFilled, date }: { week: number, filled: boolean, partiallyFilled: boolean, date: Date }) {
   const styles: CSSProperties = {
     width: 10,
     height: 10,
     backgroundColor: '',
     border: '1px solid grey',
+    opacity: 1
   }
 
   if (filled) {
     styles.backgroundColor = 'red'
+  } else if(partiallyFilled) {
+    styles.opacity = 0.5
+    styles.backgroundColor = 'yellow'
   }
 
   return (
@@ -27,27 +31,28 @@ function WeeksInYear({ year: yearOfAge, dob }: {year: number, dob: Date}) {
     alignItems: 'center'
   }
 
-  let filled = false
   const weeks = []
   const startDate = addYears(dob, yearOfAge)
   const endOfYear = addYears(startDate, 1)
-  // const startDate = addDays(dob, 1) // first day after your birthday
-  let weekIndex = 0
+  let weekIndex = 1
   let currentDate: Date | undefined = undefined
   let end = false
 
   do {
     currentDate = addWeeks(startDate, weekIndex)
 
-    if (currentDate >= endOfYear) {
-      // some years have an extra day, if that happens make it the last day of the year
+    const diffDaysBetweenEndDate = differenceInDays(endOfYear, currentDate)
+    if (diffDaysBetweenEndDate <= 2) {
+      // Some years have an additional day or two
+      // when that happens make sure the end date aligns with the last day and ensure 52 weeks
       currentDate = endOfYear
       end = true
     }
 
-    filled = isPast(currentDate)
+    const filled = isPast(currentDate)
+    const partiallyFilled = differenceInDays(currentDate, new Date()) < 7
     weeks.push((
-      <Week key={weekIndex} week={getWeek(currentDate)} filled={filled} date={currentDate}></Week>
+      <Week key={weekIndex} week={getWeek(currentDate)} filled={filled} partiallyFilled={partiallyFilled} date={currentDate}></Week>
     ))
 
     weekIndex++
