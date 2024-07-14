@@ -1,3 +1,12 @@
-# Interview assessments
+# What is this?
 
-The purpose of this repository is to store all of the interview assessments I've done for varying companies.  I have permission to store all of this on my repository.
+This repository is a holding pen for interview assessments that I've completed. 
+
+My goal is to provide information on my abilities without duplicating effort.
+
+
+# Interview assessments can be very boring!
+
+I encourage you to look at my personal projects as well!    They are much more interesting.
+
+My personal projects are available on my [GitHub](https://github.com/MikesGlitch).  
